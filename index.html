@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天美星空果冻官网入口 - 星空质感,果冻般顺滑的视频品牌体验</title>
+<meta name="description" content="天美星空果冻是专注于星空质感影像与顺滑播放体验的视频品牌，官网入口汇聚原创作品、创作者社区、技术支持与品牌资讯，随时开启沉浸式视听之旅。">
+<style>
+  :root{
+    --bg-deep:#05060f;
+    --bg-mid:#0b0f24;
+    --bg-soft:#121a38;
+    --ink:#eef2ff;
+    --ink-dim:#a8b0d0;
+    --ink-faint:#6f77a0;
+    --accent:#7c8bff;
+    --accent2:#b06bff;
+    --accent3:#3fd6e2;
+    --jelly:#ff6fb5;
+    --line:rgba(140,155,255,.16);
+    --line-soft:rgba(140,155,255,.08);
+    --card:rgba(19,26,54,.72);
+    --radius:22px;
+    --shadow:0 24px 70px -30px rgba(90,110,255,.55);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:
+      radial-gradient(1100px 700px at 82% -8%, rgba(124,139,255,.20), transparent 62%),
+      radial-gradient(900px 620px at 6% 8%, rgba(176,107,255,.16), transparent 60%),
+      radial-gradient(1000px 800px at 50% 118%, rgba(63,214,226,.13), transparent 64%),
+      linear-gradient(180deg,var(--bg-deep) 0%, var(--bg-mid) 45%, #070a18 100%);
+    color:var(--ink);
+    line-height:1.75;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  .wrap{width:min(1240px,92vw);margin:0 auto}
+
+  /* 星空背景层 */
+  .starfield{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.9}
+  .glow-orb{position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);pointer-events:none}
+  .orb-a{width:520px;height:520px;left:-160px;top:6%;background:radial-gradient(circle,rgba(124,139,255,.35),transparent 68%)}
+  .orb-b{width:600px;height:600px;right:-220px;top:26%;background:radial-gradient(circle,rgba(176,107,255,.26),transparent 70%)}
+  .orb-c{width:460px;height:460px;left:32%;bottom:-180px;background:radial-gradient(circle,rgba(63,214,226,.22),transparent 70%)}
+
+  /* 导航 */
+  header.site-nav{
+    position:sticky;top:0;z-index:80;
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    background:linear-gradient(180deg,rgba(6,8,20,.88),rgba(6,8,20,.62));
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{display:flex;align-items:center;gap:28px;height:70px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px;font-size:18px;white-space:nowrap}
+  .brand .mark{width:38px;height:38px;border-radius:12px;flex:none;position:relative;overflow:hidden;
+    background:conic-gradient(from 200deg,#7c8bff,#b06bff,#3fd6e2,#ff6fb5,#7c8bff);
+    box-shadow:0 0 0 1px rgba(255,255,255,.16),0 8px 24px -8px rgba(124,139,255,.8);
+    animation:spinMark 14s linear infinite}
+  .brand .mark::after{content:"";position:absolute;inset:4px;border-radius:9px;background:radial-gradient(circle at 30% 28%,#1a2350,#080b1c 72%)}
+  .brand .mark::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 74%,rgba(255,255,255,.75) 0 1.6px,transparent 2.4px),radial-gradient(circle at 26% 66%,rgba(255,255,255,.6) 0 1.2px,transparent 2px);opacity:.9}
+  @keyframes spinMark{to{transform:rotate(360deg)}}
+  .brand small{display:block;font-size:10px;letter-spacing:2.4px;color:var(--ink-faint);font-weight:600}
+  nav.links{display:flex;gap:6px;margin-left:10px;flex:1}
+  nav.links a{padding:8px 14px;border-radius:999px;font-size:14px;color:var(--ink-dim);transition:.22s}
+  nav.links a:hover{color:#fff;background:rgba(124,139,255,.14)}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font-size:14px;font-weight:700;padding:11px 22px;border:1px solid transparent;cursor:pointer;transition:.24s;white-space:nowrap}
+  .btn-primary{background:linear-gradient(120deg,#7c8bff,#b06bff 55%,#ff6fb5);color:#07091a;box-shadow:0 14px 34px -12px rgba(140,110,255,.9)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 42px -12px rgba(160,120,255,1)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(124,139,255,.06)}
+  .btn-ghost:hover{background:rgba(124,139,255,.16);transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:8px 12px;font-size:16px;cursor:pointer}
+
+  /* Hero */
+  .hero{position:relative;padding:84px 0 70px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2.6px;color:var(--accent3);text-transform:uppercase;font-weight:700;padding:7px 16px;border-radius:999px;border:1px solid rgba(63,214,226,.3);background:rgba(63,214,226,.07);margin-bottom:26px}
+  .kicker i{width:6px;height:6px;border-radius:50%;background:var(--accent3);box-shadow:0 0 12px var(--accent3);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+  h1{font-size:clamp(38px,5.4vw,68px);line-height:1.12;letter-spacing:-1px;font-weight:900;margin-bottom:24px}
+  h1 .grad{background:linear-gradient(100deg,#9aa8ff,#c98bff 42%,#3fd6e2 78%,#ff8fc8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:16.5px;color:var(--ink-dim);max-width:560px;margin-bottom:34px}
+  .lede b{color:#fff;font-weight:700}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:580px}
+  .stat{padding:14px 12px;border-radius:16px;background:var(--card);border:1px solid var(--line-soft)}
+  .stat strong{display:block;font-size:22px;font-weight:900;background:linear-gradient(120deg,#fff,#a9b6ff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.3}
+  .stat span{font-size:11.5px;color:var(--ink-faint);letter-spacing:.6px}
+
+  /* Hero 视觉：果冻立方 + 环绕轨道 */
+  .hero-visual{position:relative;height:480px;display:flex;align-items:center;justify-content:center}
+  .orbit{position:absolute;border:1px dashed rgba(140,155,255,.22);border-radius:50%}
+  .orbit.o1{width:400px;height:400px;animation:spin 38s linear infinite}
+  .orbit.o2{width:300px;height:300px;animation:spin 26s linear infinite reverse;border-color:rgba(63,214,226,.18)}
+  .orbit.o3{width:210px;height:210px;animation:spin 18s linear infinite;border-color:rgba(255,111,181,.16)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .orbit span{position:absolute;width:9px;height:9px;border-radius:50%;top:-4.5px;left:calc(50% - 4.5px);background:var(--accent);box-shadow:0 0 14px var(--accent)}
+  .orbit.o2 span{background:var(--accent3);box-shadow:0 0 14px var(--accent3)}
+  .orbit.o3 span{background:var(--jelly);box-shadow:0 0 14px var(--jelly)}
+  .jelly-core{width:200px;height:200px;border-radius:38%;position:relative;z-index:3;
+    background:
+      radial-gradient(circle at 32% 26%,rgba(255,255,255,.95),rgba(255,255,255,.22) 22%,transparent 42%),
+      radial-gradient(circle at 70% 78%,rgba(63,214,226,.85),transparent 58%),
+      linear-gradient(140deg,#8b9bff 0%,#b06bff 46%,#ff6fb5 100%);
+    box-shadow:inset 0 0 60px rgba(255,255,255,.28),0 30px 80px -24px rgba(160,110,255,.95),0 0 0 1px rgba(255,255,255,.18);
+    animation:morph 9s ease-in-out infinite}
+  @keyframes morph{
+    0%,100%{border-radius:38% 62% 55% 45%/48% 42% 58% 52%;transform:rotate(0deg)}
+    33%{border-radius:58% 42% 40% 60%/42% 60% 40% 58%;transform:rotate(8deg) scale(1.03)}
+    66%{border-radius:44% 56% 62% 38%/60% 38% 62% 40%;transform:rotate(-6deg) scale(.98)}
+  }
+  .jelly-core::after{content:"";position:absolute;inset:0;border-radius:inherit;
+    background:radial-gradient(circle at 50% 120%,rgba(5,6,15,.55),transparent 60%);
+    mix-blend-mode:multiply}
+  .float-tag{position:absolute;z-index:4;padding:9px 15px;border-radius:14px;font-size:12.5px;font-weight:700;
+    background:rgba(11,15,36,.82);border:1px solid var(--line);backdrop-filter:blur(10px);box-shadow:var(--shadow);
+    display:flex;align-items:center;gap:8px;color:var(--ink)}
+  .float-tag i{width:7px;height:7px;border-radius:50%;background:var(--accent3);box-shadow:0 0 10px var(--accent3)}
+  .tag-1{top:24px;left:6px;animation:floaty 6s ease-in-out infinite}
+  .tag-2{right:-6px;top:132px;animation:floaty 7.5s ease-in-out infinite .8s}
+  .tag-3{bottom:38px;left:18px;animation:floaty 6.8s ease-in-out infinite .4s}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  /* 通用区块 */
+  section{position:relative;padding:88px 0}
+  .sec-head{max-width:720px;margin-bottom:52px}
+  .sec-head .eyebrow{font-size:12px;letter-spacing:3px;font-weight:800;color:var(--accent);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .sec-head .eyebrow::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px}
+  .sec-head h2{font-size:clamp(26px,3.4vw,40px);line-height:1.25;font-weight:900;letter-spacing:-.6px;margin-bottom:16px}
+  .sec-head p{color:var(--ink-dim);font-size:15.5px}
+  .divider-line{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:0 auto;width:min(1240px,92vw)}
+
+  /* 品牌理念 */
+  .philo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .philo{position:relative;padding:34px 30px;border-radius:var(--radius);background:linear-gradient(160deg,rgba(22,29,60,.86),rgba(12,16,36,.72));border:1px solid var(--line-soft);overflow:hidden;transition:.3s}
+  .philo::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(124,139,255,.5),transparent 42%,transparent 62%,rgba(63,214,226,.42));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.32s}
+  .philo:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .philo:hover::before{opacity:1}
+  .philo .ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;margin-bottom:22px;background:linear-gradient(140deg,rgba(124,139,255,.24),rgba(176,107,255,.14));border:1px solid var(--line)}
+  .philo .ico svg{width:26px;height:26px;stroke:url(#gIco);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .philo h3{font-size:19px;font-weight:800;margin-bottom:10px}
+  .philo p{font-size:14.5px;color:var(--ink-dim)}
+
+  /* 作品墙 */
+  .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .work{border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--line-soft);transition:.32s;cursor:pointer;position:relative}
+  .work:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(124,139,255,.34)}
+  .work .thumb{aspect-ratio:16/10;position:relative;overflow:hidden}
+  .work .thumb .art{position:absolute;inset:0;transition:.5s}
+  .work:hover .thumb .art{transform:scale(1.06)}
+  .work .thumb .play{position:absolute;inset:0;display:grid;place-items:center;z-index:2}
+  .work .thumb .play span{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(6,8,20,.55);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);transition:.3s}
+  .work:hover .play span{transform:scale(1.12);background:rgba(124,139,255,.7)}
+  .work .thumb .play svg{width:18px;height:18px;fill:#fff;margin-left:3px}
+  .work .badge{position:absolute;top:14px;left:14px;z-index:3;font-size:11px;font-weight:800;padding:4px 11px;border-radius:999px;background:rgba(6,8,20,.6);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);color:#dfe4ff;letter-spacing:.6px}
+  .work .meta{padding:18px 20px 22px}
+  .work .meta h3{font-size:16.5px;font-weight:800;margin-bottom:6px}
+  .work .meta p{font-size:13px;color:var(--ink-faint)}
+  .work .meta .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12px;color:var(--ink-faint)}
+  .work .meta .row b{color:var(--accent3);font-weight:700}
+  .art-1{background:radial-gradient(circle at 28% 30%,#8b9bff,#3a2f8f 42%,#0a0d20 82%)}
+  .art-1::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 74% 22%,rgba(255,255,255,.9) 0 1.4px,transparent 2px),radial-gradient(circle at 60% 62%,rgba(255,255,255,.7) 0 1.1px,transparent 1.8px),radial-gradient(circle at 38% 78%,rgba(255,255,255,.6) 0 1px,transparent 1.7px);opacity:.7}
+  .art-2{background:linear-gradient(135deg,#ff6fb5,#b06bff 48%,#3f2a8f)}
+  .art-2::after{content:"";position:absolute;width:150%;height:150%;left:-25%;top:10%;background:conic-gradient(from 60deg,transparent 0 18%,rgba(255,255,255,.22) 20%,transparent 24% 46%,rgba(255,255,255,.14) 48%,transparent 52%);animation:spin 22s linear infinite}
+  .art-3{background:radial-gradient(circle at 70% 30%,#3fd6e2,#125e7d 46%,#06131f 82%)}
+  .art-3::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 70%,rgba(255,255,255,.5) 0 1.2px,transparent 1.9px),radial-gradient(circle at 66% 82%,rgba(255,255,255,.55) 0 1px,transparent 1.7px);opacity:.8}
+  .art-4{background:linear-gradient(160deg,#241c52,#7c8bff 60%,#ffd6f0)}
+  .art-4::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-50px;bottom:-70px;background:radial-gradient(circle,rgba(255,255,255,.55),transparent 68%)}
+  .art-5{background:radial-gradient(circle at 40% 40%,#ff9a6f,#b0399a 52%,#1b0f38 88%)}
+  .art-5::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(120deg,transparent 0 22px,rgba(255,255,255,.05) 22px 23px)}
+  .art-6{background:linear-gradient(120deg,#0c2a4d,#256b9c 42%,#8be4ef)}
+  .art-6::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 30%,rgba(255,255,255,.75) 0 1.4px,transparent 2px),radial-gradient(circle at 24% 66%,rgba(255,255,255,.5) 0 1px,transparent 1.8px);opacity:.85}
+
+  /* 播放器演示 */
+  .studio{display:grid;grid-template-columns:1.25fr .75fr;gap:36px;align-items:start}
+  .player-shell{border-radius:26px;padding:16px;background:linear-gradient(160deg,rgba(26,34,70,.9),rgba(10,13,30,.85));border:1px solid var(--line);box-shadow:var(--shadow)}
+  .player-screen{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:radial-gradient(circle at 30% 30%,#2a3576,#0a0d20 70%)}
+  .player-screen .scene{position:absolute;inset:0;background:
+    radial-gradient(circle at 22% 26%,rgba(124,139,255,.9),transparent 42%),
+    radial-gradient(circle at 74% 68%,rgba(63,214,226,.7),transparent 46%),
+    radial-gradient(circle at 58% 18%,rgba(176,107,255,.75),transparent 40%);
+    filter:blur(6px);animation:sceneShift 12s ease-in-out infinite alternate}
+  @keyframes sceneShift{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.12) translate(-2%,2%)}}
+  .player-screen .stars{position:absolute;inset:0;background-image:
+    radial-gradient(1.4px 1.4px at 12% 22%,#fff,transparent),
+    radial-gradient(1.2px 1.2px at 38% 12%,#fff,transparent),
+    radial-gradient(1.6px 1.6px at 72% 30%,#fff,transparent),
+    radial-gradient(1px 1px at 84% 62%,#fff,transparent),
+    radial-gradient(1.3px 1.3px at 26% 72%,#fff,transparent),
+    radial-gradient(1.1px 1.1px at 58% 82%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 92% 16%,#fff,transparent),
+    radial-gradient(1px 1px at 46% 46%,#fff,transparent);
+    opacity:.85;animation:twinkle 4.5s ease-in-out infinite alternate}
+  @keyframes twinkle{0%{opacity:.4}100%{opacity:1}}
+  .player-screen .center-title{position:absolute;inset:0;display:grid;place-items:center;z-index:3}
+  .player-screen .center-title .ring{width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;background:rgba(6,8,20,.4);backdrop-filter:blur(8px);transition:.3s;cursor:pointer}
+  .player-screen .center-title .ring:hover{transform:scale(1.08);background:rgba(124,139,255,.55)}
+  .player-screen .center-title .ring svg{width:26px;height:26px;fill:#fff;margin-left:4px}
+  .player-controls{display:flex;align-items:center;gap:14px;padding:16px 6px 4px}
+  .ctrl-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(124,139,255,.1);display:grid;place-items:center;cursor:pointer;transition:.22s;flex:none}
+  .ctrl-btn:hover{background:rgba(124,139,255,.28)}
+  .ctrl-btn svg{width:15px;height:15px;fill:#dfe4ff}
+  .progress-wrap{flex:1;display:flex;flex-direction:column;gap:7px}
+  .progress-bar{height:5px;border-radius:99px;background:rgba(140,155,255,.16);position:relative;cursor:pointer;overflow:hidden}
+  .progress-fill{position:absolute;left:0;top:0;bottom:0;width:42%;border-radius:99px;background:linear-gradient(90deg,#7c8bff,#3fd6e2,#ff6fb5)}
+  .progress-fill::after{content:"";position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 0 12px rgba(255,255,255,.9)}
+  .time-row{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-faint);letter-spacing:.4px}
+  .quality{font-size:11px;font-weight:800;padding:5px 11px;border-radius:8px;border:1px solid rgba(63,214,226,.4);color:var(--accent3);background:rgba(63,214,226,.08);letter-spacing:.6px;flex:none}
+  .player-aside{display:flex;flex-direction:column;gap:16px}
+  .spec-card{padding:24px;border-radius:18px;background:var(--card);border:1px solid var(--line-soft)}
+  .spec-card h4{font-size:14px;letter-spacing:.6px;color:var(--ink-faint);margin-bottom:14px;font-weight:700;text-transform:uppercase}
+  .spec-card ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .spec-card li{display:flex;justify-content:space-between;font-size:14px;gap:12px}
+  .spec-card li span{color:var(--ink-faint)}
+  .spec-card li b{color:var(--ink);font-weight:700}
+  .mini-note{padding:20px 24px;border-radius:18px;background:linear-gradient(140deg,rgba(124,139,255,.16),rgba(176,107,255,.09));border:1px solid rgba(124,139,255,.24)}
+  .mini-note p{font-size:13.5px;color:var(--ink-dim)}
+  .mini-note b{color:#fff}
+
+  /* 数据带 */
+  .band{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,rgba(12,16,38,.6),rgba(8,10,26,.35));padding:56px 0}
+  .band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+  .band-item strong{display:block;font-size:clamp(28px,3.6vw,44px);font-weight:900;line-height:1.2;background:linear-gradient(120deg,#fff,#9aa8ff 60%,#3fd6e2);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .band-item span{font-size:13px;color:var(--ink-faint);letter-spacing:.8px}
+
+  /* 社区 */
+  .community-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .cm-card{padding:24px;border-radius:18px;background:var(--card);border:1px solid var(--line-soft);transition:.28s}
+  .cm-card:hover{transform:translateY(-4px);border-color:rgba(176,107,255,.36);background:rgba(30,38,78,.7)}
+  .cm-card .avatar{width:44px;height:44px;border-radius:50%;margin-bottom:16px;position:relative;overflow:hidden}
+  .cm-card .avatar::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.6),transparent 46%)}
+  .av-1{background:linear-gradient(140deg,#7c8bff,#b06bff)}
+  .av-2{background:linear-gradient(140deg,#3fd6e2,#3a7bf0)}
+  .av-3{background:linear-gradient(140deg,#ff6fb5,#ffa36f)}
+  .av-4{background:linear-gradient(140deg,#a1ffcf,#3fd6e2)}
+  .cm-card h4{font-size:15px;font-weight:800;margin-bottom:4px}
+  .cm-card .role{font-size:11.5px;color:var(--accent3);margin-bottom:12px;letter-spacing:.6px}
+  .cm-card p{font-size:13px;color:var(--ink-dim);line-height:1.7}
+
+  /* 时间线 */
+  .timeline{position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--accent),var(--accent3),transparent)}
+  .tl-item{position:relative;padding:0 0 40px 0}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-30px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--bg-deep);border:2px solid var(--accent);box-shadow:0 0 0 4px rgba(124,139,255,.14)}
+  .tl-item .yr{font-size:12px;font-weight:800;color:var(--accent3);letter-spacing:1.4px;margin-bottom:7px}
+  .tl-item h3{font-size:18px;font-weight:800;margin-bottom:7px}
+  .tl-item p{font-size:14px;color:var(--ink-dim);max-width:640px}
+
+  /* FAQ */
+  .faq-list{display:flex;flex-direction:column;gap:14px;max-width:900px}
+  .faq{border-radius:16px;background:var(--card);border:1px solid var(--line-soft);overflow:hidden;transition:.26s}
+  .faq[open]{border-color:rgba(124,139,255,.34);background:rgba(24,31,66,.8)}
+  .faq summary{cursor:pointer;list-style:none;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:700;font-size:15.5px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .plus{width:24px;height:24px;flex:none;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:15px;color:var(--accent);transition:.26s}
+  .faq[open] summary .plus{transform:rotate(45deg);background:rgba(124,139,255,.2)}
+  .faq .body{padding:0 24px 22px;font-size:14px;color:var(--ink-dim)}
+
+  /* CTA */
+  .cta-box{position:relative;overflow:hidden;border-radius:30px;padding:64px 56px;text-align:center;
+    background:linear-gradient(150deg,rgba(34,42,92,.92),rgba(18,23,52,.9) 50%,rgba(40,26,74,.92));
+    border:1px solid rgba(124,139,255,.28);box-shadow:0 40px 100px -40px rgba(124,139,255,.6)}
+  .cta-box::before{content:"";position:absolute;width:520px;height:520px;left:-140px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(124,139,255,.34),transparent 68%);pointer-events:none}
+  .cta-box::after{content:"";position:absolute;width:440px;height:440px;right:-120px;bottom:-200px;border-radius:50%;background:radial-gradient(circle,rgba(255,111,181,.24),transparent 68%);pointer-events:none}
+  .cta-box h2{font-size:clamp(26px,3.4vw,40px);font-weight:900;letter-spacing:-.6px;margin-bottom:16px;position:relative;z-index:1}
+  .cta-box p{color:var(--ink-dim);max-width:620px;margin:0 auto 32px;font-size:15.5px;position:relative;z-index:1}
+  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+  .cta-form{display:flex;gap:10px;max-width:520px;margin:30px auto 0;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
+  .cta-form input{flex:1;min-width:240px;padding:13px 20px;border-radius:999px;border:1px solid var(--line);background:rgba(8,10,26,.7);color:var(--ink);font-size:14px;outline:none;font-family:inherit}
+  .cta-form input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,139,255,.18)}
+  .cta-form button{padding:13px 26px}
+  .form-hint{font-size:12px;color:var(--ink-faint);margin-top:12px;position:relative;z-index:1}
+
+  /* 页脚 */
+  footer.site-footer{border-top:1px solid var(--line-soft);padding:64px 0 34px;background:linear-gradient(180deg,rgba(6,8,20,0),rgba(5,6,15,.85))}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+  .foot-brand p{font-size:13.5px;color:var(--ink-dim);margin:18px 0 22px;max-width:320px}
+  .foot-brand .badges{display:flex;gap:10px;flex-wrap:wrap}
+  .foot-brand .badges span{font-size:11px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink-faint)}
+  .foot-col h5{font-size:13px;font-weight:800;letter-spacing:1.2px;color:var(--ink);margin-bottom:18px;text-transform:uppercase}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .foot-col a{font-size:13.5px;color:var(--ink-dim);transition:.2s}
+  .foot-col a:hover{color:var(--accent3)}
+  .foot-bottom{border-top:1px solid var(--line-soft);padding-top:26px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-faint)}
+  .foot-bottom .links{display:flex;gap:20px;flex-wrap:wrap}
+
+  /* 通用动效 */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,.7,.3,1),transform .8s cubic-bezier(.22,.7,.3,1)}
+  .reveal.on{opacity:1;transform:none}
+
+  @media (max-width:1080px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-visual{height:420px;order:2}
+    .works-grid{grid-template-columns:repeat(2,1fr)}
+    .community-grid{grid-template-columns:repeat(2,1fr)}
+    .philo-grid{grid-template-columns:1fr}
+    .studio{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:760px){
+    nav.links{display:none}
+    nav.links.open{display:flex;position:absolute;top:70px;left:0;right:0;flex-direction:column;background:rgba(6,8,20,.97);padding:16px 20px 24px;border-bottom:1px solid var(--line);gap:2px;backdrop-filter:blur(18px)}
+    nav.links.open a{padding:12px 14px;border-radius:10px}
+    .nav-toggle{display:block}
+    .nav-cta .btn-ghost{display:none}
+    .hero{padding:56px 0 50px}
+    .stat-row{grid-template-columns:repeat(2,1fr)}
+    .works-grid{grid-template-columns:1fr}
+    .community-grid{grid-template-columns:1fr}
+    .band-grid{grid-template-columns:repeat(2,1fr);gap:30px}
+    .cta-box{padding:44px 24px;border-radius:24px}
+    .foot-grid{grid-template-columns:1fr}
+    section{padding:64px 0}
+    .hero-visual{height:360px}
+    .jelly-core{width:160px;height:160px}
+    .orbit.o1{width:320px;height:320px}
+    .orbit.o2{width:240px;height:240px}
+    .orbit.o3{width:170px;height:170px}
+    .tag-2{top:96px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition-duration:.01ms!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- 星空背景 SVG -->
+<svg class="starfield" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="gIco" gradientUnits="objectBoundingBox" cx="20%" cy="15%" r="100%">
+      <stop offset="0%" stop-color="#cfd6ff"/>
+      <stop offset="55%" stop-color="#a58bff"/>
+      <stop offset="100%" stop-color="#3fd6e2"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g fill="#ffffff">
+    <circle cx="120" cy="80" r="1.4" opacity=".55"/>
+    <circle cx="320" cy="40" r="1.1" opacity=".4"/>
+    <circle cx="520" cy="140" r="1.6" opacity=".6"/>
+    <circle cx="760" cy="60" r="1.2" opacity=".45"/>
+    <circle cx="980" cy="120" r="1.5" opacity=".55"/>
+    <circle cx="1240" cy="70" r="1.2" opacity=".4"/>
+    <circle cx="1460" cy="150" r="1.6" opacity=".6"/>
+    <circle cx="200" cy="300" r="1.1" opacity=".35"/>
+    <circle cx="460" cy="360" r="1.4" opacity=".5"/>
+    <circle cx="700" cy="280" r="1" opacity=".3"/>
+    <circle cx="1060" cy="340" r="1.5" opacity=".5"/>
+    <circle cx="1380" cy="300" r="1.1" opacity=".38"/>
+    <circle cx="80" cy="560" r="1.3" opacity=".42"/>
+    <circle cx="380" cy="620" r="1" opacity=".32"/>
+    <circle cx="820" cy="540" r="1.5" opacity=".5"/>
+    <circle cx="1180" cy="600" r="1.2" opacity=".4"/>
+    <circle cx="1500" cy="520" r="1.3" opacity=".45"/>
+    <circle cx="240" cy="820" r="1.4" opacity=".48"/>
+    <circle cx="620" cy="880" r="1.1" opacity=".34"/>
+    <circle cx="940" cy="800" r="1.5" opacity=".5"/>
+    <circle cx="1300" cy="860" r="1.2" opacity=".4"/>
+  </g>
+  <g filter="url(#softGlow)" opacity=".75">
+    <circle cx="640" cy="200" r="2.2" fill="#c9d0ff"/>
+    <circle cx="1120" cy="460" r="2.4" fill="#a8f4ff"/>
+    <circle cx="420" cy="720" r="2" fill="#ffc2e4"/>
+  </g>
+</svg>
+<div class="glow-orb orb-a"></div>
+<div class="glow-orb orb-b"></div>
+<div class="glow-orb orb-c"></div>
+
+<!-- 导航 -->
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true"></span>
+      <span>天美星空果冻<small>STAR JELLY STUDIO</small></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#philosophy">品牌理念</a>
+      <a href="#works">作品剧场</a>
+      <a href="#studio">放映技术</a>
+      <a href="#community">创作社区</a>
+      <a href="#journey">品牌历程</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#studio">体验入口</a>
+      <a class="btn btn-primary" href="#join">官网入口</a>
+      <button class="nav-toggle" id="navToggle" aria-label="展开导航">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="kicker"><i></i>官网首页 · 星空影像企划</span>
+        <h1>天美星空果冻<span class="grad">　让每一帧都像星空般顺滑</span></h1>
+        <p class="lede">这里是<b>天美星空果冻官网入口</b>。我们把宇宙的深邃与果冻般的柔滑质感装进视频：原创短片、都市纪录、创作者联名与实时放映技术，全部汇集于同一入口。你只需要点开，就能进入这片持续流动的星空。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#works">进入作品剧场 →</a>
+          <a class="btn btn-ghost" href="#join">获取官网入口</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><strong data-count="1286">0</strong><span>原创影像作品</span></div>
+          <div class="stat"><strong data-count="47">0</strong><span>合作创作者</span></div>
+          <div class="stat"><strong data-count="92">0</strong><span>城市放映场次</span></div>
+          <div class="stat"><strong data-count="99.6" data-suffix="%">0</strong><span>播放顺滑度</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit o1"><span></span></div>
+        <div class="orbit o2"><span></span></div>
+        <div class="orbit o3"><span></span></div>
+        <div class="jelly-core"></div>
+        <div class="float-tag tag-1"><i></i>星空质感渲染中</div>
+        <div class="float-tag tag-2"><i></i>果冻顺滑引擎 v4</div>
+        <div class="float-tag tag-3"><i></i>社区作品实时更新</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+  <!-- 品牌理念 -->
+  <section id="philosophy">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Philosophy</div>
+        <h2>把冷冽的星空，做成可以入口的柔软</h2>
+        <p>天美星空果冻不是一家只做播放的平台，而是一间把「星空」与「果冻」两种质感揉在一起的影像工作室。我们相信，好的视频既要有宇宙般的纵深，也要有果冻般的亲和力——深邃但不疏离，柔软但不轻飘。</p>
+      </div>
+      <div class="philo-grid">
+        <article class="philo reveal">
+          <div class="ico">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+          </div>
+          <h3>星空纵深</h3>
+          <p>从银河星轨到城市夜灯，我们坚持用真实光线与长时曝光构建画面纵深，让每一个镜头都有可被反复观看的层次与呼吸感。</p>
+        </article>
+        <article class="philo reveal">
+          <div class="ico">
+            <svg viewBox="0 0 24 24"><path d="M12 3c4.5 3 6.5 6 6.5 9a6.5 6.5 0 0 1-13 0C5.5 9 7.5 6 12 3z"/><path d="M9.5 13.5a2.5 2.5 0 0 0 5 0"/></svg>
+          </div>
+          <h3>果冻质感</h3>
+          <p>色彩过渡、缓动曲线、弹性质感——我们把果冻的物理特性翻译成画面语言，让转场、字幕与光斑都带着轻微的晃动与回弹。</p>
+        </article>
+        <article class="philo reveal">
+          <div class="ico">
+            <svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-6 4 12 2.5-6H21"/></svg>
+          </div>
+          <h3>持续流动</h3>
+          <p>官网入口不只是一扇门，而是一条持续更新的流。每周新增社区投稿、每月更新主题企划，让品牌与观众始终处在同一条时间轴上。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品剧场 -->
+  <section id="works">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Works · 作品剧场</div>
+        <h2>六个正在放映的星空切片</h2>
+        <p>从极光的低频呼吸到城市凌晨的霓虹，从手作甜品的柔光到海岸线的延时星轨。以下为近期主推作品，点击卡片可进入对应放映页。</p>
+      </div>
+      <div class="works-grid">
+        <article class="work reveal" tabindex="0">
+          <div class="thumb">
+            <div class="art art-1"></div>
+            <span class="badge">主推 · 4K</span>
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="meta">
+            <h3>《星轨七分钟》</h3>
+            <p>长曝光星轨与城市天际线的双重叠加，记录一夜之间的银河位移。</p>
+            <div class="row"><span>影像 · 延时摄影</span><b>42.8 万次播放</b></div>
+          </div>
+        </article>
+        <article class="work reveal" tabindex="0">
+          <div class="thumb">
+            <div class="art art-2"></div>
+            <span class="badge">新作</span>
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="meta">
+            <h3>《果冻色板》</h3>
+            <p>以六种果冻质感为基础，拆解色彩在慢镜头中的流动与回弹。</p>
+            <div class="row"><span>实验 · 色彩短片</span><b>28.1 万次播放</b></div>
+          </div>
+        </article>
+        <article class="work reveal" tabindex="0">
+          <div class="thumb">
+            <div class="art art-3"></div>
+            <span class="badge">社区精选</span>
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="meta">
+            <h3>《深海星图》</h3>
+            <p>水下摄影与星空素材的跨界混剪，寻找两种幽暗之间的相似性。</p>
+            <div class="row"><span>纪录 · 混剪</span><b>19.4 万次播放</b></div>
+          </div>
+        </article>
+        <article class="work reveal" tabindex="0">
+          <div class="thumb">
+            <div class="art art-4"></div>
+            <span class="badge">联名</span>
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="meta">
+            <h3>《甜度临界》</h3>
+            <p>与独立甜品工作室联名，用微距镜头呈现糖体结晶的瞬间光折射。</p>
+            <div class="row"><span>联名 · 微距</span><b>33.6 万次播放</b></div>
+          </div>
+        </article>
+        <article class="work reveal" tabindex="0">
+          <div class="thumb">
+            <div class="art art-5"></div>
+            <span class="badge">系列</span>
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="meta">
+            <h3>《深夜霓虹档案》</h3>
+            <p>连续十二个城市的凌晨两点，收集街区招牌的光与雨后的反光。</p>
+            <div class="row"><span>系列 · 城市纪录</span><b>51.2 万次播放</b></div>
+          </div>
+        </article>
+        <article class="work reveal" tabindex="0">
+          <div class="thumb">
+            <div class="art art-6"></div>
+            <span class="badge">精选 · HDR</span>
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          </div>
+          <div class="meta">
+            <h3>《海岸线呼吸》</h3>
+            <p>潮汐节奏与呼吸曲线对齐的沉浸短片，适合大屏与环境音完整观看。</p>
+            <div class="row"><span>沉浸 · 环境影像</span><b>26.7 万次播放</b></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+  <!-- 放映技术 -->
+  <section id="studio">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Studio · 放映技术</div>
+        <h2>顺滑，是被计算出来的手感</h2>
+        <p>天美星空果冻自研的放映层把缓冲、解码与色彩管理整合在同一个管道里。你看到的不是加载条，而是一次几乎察觉不到的重力下落。</p>
+      </div>
+      <div class="studio">
+        <div class="player-shell reveal">
+          <div class="player-screen">
+            <div class="scene"></div>
+            <div class="stars"></div>
+            <div class="center-title">
+              <div class="ring" id="playBtn" role="button" tabindex="0" aria-label="播放演示">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="player-controls">
+            <button class="ctrl-btn" id="prevBtn" aria-label="上一段"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zM20 6v12L10 12z"/></svg></button>
+            <button class="ctrl-btn" id="toggleBtn" aria-label="播放或暂停"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="progress-wrap">
+              <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+              <div class="time-row"><span id="timeNow">00:00</span><span>07:12</span></div>
+            </div>
+            <span class="quality">HDR · 4K</span>
+          </div>
+        </div>
+        <div class="player-aside">
+          <div class="spec-card reveal">
+            <h4>技术参数</h4>
+            <ul>
+              <li><span>解码格式</span><b>AV1 / HEVC</b></li>
+              <li><span>色彩管理</span><b>10bit HDR</b></li>
+              <li><span>首帧时间</span><b>&lt; 0.4 秒</b></li>
+              <li><span>自适应码率</span><b>智能分级</b></li>
+              <li><span>音轨</span><b>空间音频</b></li>
+            </ul>
+          </div>
+          <div class="mini-note reveal">
+            <p><b>提示：</b>本区域为交互演示，点击播放按钮可查看进度条动态效果。真实播放入口在官网内页，登录后即可解锁全部画质档位与创作者注释。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数据带 -->
+  <div class="band">
+    <div class="wrap band-grid">
+      <div class="band-item reveal"><strong data-count="1286">0</strong><span>累计原创作品</span></div>
+      <div class="band-item reveal"><strong data-count="47">0</strong><span>签约创作者</span></div>
+      <div class="band-item reveal"><strong data-count="92">0</strong><span>城市线下放映</span></div>
+      <div class="band-item reveal"><strong data-count="380" data-suffix="万+">0</strong><span>累计观看人次</span></div>
+    </div>
+  </div>
+
+  <!-- 社区 -->
+  <section id="community">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Community · 创作社区</div>
+        <h2>星空之下，创作者从未独自工作</h2>
+        <p>天美星空果冻的社区不按粉丝量排序，而按「作品完成度」与「互助记录」两套并行机制推荐。每一位投稿者都能获得来自技术与美学两个维度的反馈。</p>
+      </div>
+      <div class="community-grid">
+        <article class="cm-card reveal">
+          <div class="avatar av-1"></div>
+          <h4>林见星</h4>
+          <div class="role">延时摄影师 · 社区导师</div>
+          <p>专注城市星轨与城市光污染对照题材，累计投稿 63 部，主导三次社区联合拍摄。</p>
+        </article>
+        <article class="cm-card reveal">
+          <div class="avatar av-2"></div>
+          <h4>苏果冻</h4>
+          <div class="role">色彩设计师 · 专栏作者</div>
+          <p>以「柔和曲线」为核心理念的色彩方案作者，其调色包已被 200+ 部社区作品引用。</p>
+        </article>
+        <article class="cm-card reveal">
+          <div class="avatar av-3"></div>
+          <h4>周牧野</h4>
+          <div class="role">纪录片导演 · 签约创作者</div>
+          <p>长期跟踪拍摄海岸线系列，主张用长镜头替换快剪，让观者真正停留在画面里。</p>
+        </article>
+        <article class="cm-card reveal">
+          <div class="avatar av-4"></div>
+          <h4>夏衡</h4>
+          <div class="role">声音设计 · 技术共建</div>
+          <p>负责社区空间音频模板维护，为独立创作者提供低成本环境声采集与后期方案。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 品牌历程 -->
+  <section id="journey">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Journey · 品牌历程</div>
+        <h2>从一间剪辑室，走到一片公开星空</h2>
+        <p>我们没有把成长写成冲刺，而是一段缓慢的曝光：每一年增加一点设备，每一年多认识几位创作者，每一年把入口做得更轻一点。</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="yr">2019 · 起点</div>
+          <h3>三台设备与一间剪辑室</h3>
+          <p>天美星空果冻以三人小组的形式成立，最初只为记录城市夜空中被灯光稀释的星等。第一支作品《最小可见星》完成于凌晨四点。</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="yr">2021 · 扩展</div>
+          <h3>建立自有的放映管线</h3>
+          <p>为解决长时延时素材的缓冲问题，团队开始自研放映层，把色彩管理与解码调度合并，第一次把「顺滑」当作可量化的产品指标。</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="yr">2023 · 社区</div>
+          <h3>开放创作者投稿通道</h3>
+          <p>官网入口从一个展示页面升级为可投稿、可协作、可被检索的社区入口，首批 47 位创作者入驻，形成稳定的双向反馈机制。</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="yr">2025 · 现在</div>
+          <h3>线上放映与线下联动</h3>
+          <p>作品从屏幕走向街区，92 场城市放映让星空影像进入美术馆、书店与独立空间。官网入口继续作为一切内容的起点与归处。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">FAQ · 常见问题</div>
+        <h2>在进入之前，你可能想知道</h2>
+        <p>以下是访客最常提出的问题。若仍有疑问，可通过页脚的联系入口与应用内客服取得回应。</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq reveal">
+          <summary>「天美星空果冻官网入口」具体指什么？<span class="plus">+</span></summary>
+          <div class="body">它是天美星空果冻品牌的官方统一访问入口，集中提供作品观看、社区投稿、技术说明与线下放映信息。所有官方内容均以本品牌名义发布，请认准页面内的品牌标识与统一入口说明。</div>
+        </details>
+        <details class="faq reveal">
+          <summary>观看作品需要注册账号吗？<span class="plus">+</span></summary>
+          <div class="body">公开作品可直接观看，无需注册。若希望收藏、参与讨论、投稿或被推荐至社区首页，则需要创建创作者或观众账号，二者可随时互相切换。</div>
+        </details>
+        <details class="faq reveal">
+          <summary>社区投稿有哪些基本要求？<span class="plus">+</span></summary>
+          <div class="body">作品需为原创或已获得完整授权，画面分辨率不低于 1080p，时长建议 1 至 20 分钟。投稿时请附带简要创作说明与素材来源，便于编辑团队进行技术评估与推荐。</div>
+        </details>
+        <details class="faq reveal">
+          <summary>「果冻顺滑引擎」是营销说法吗？<span class="plus">+</span></summary>
+          <div class="body">它是我们对放映管线的一组工程约定的统称，包含首帧优化、自适应码率、色彩一致性校验与音频同步补偿。你可以把它理解为一套持续调校的播放策略，而非单一组件。</div>
+        </details>
+        <details class="faq reveal">
+          <summary>如何参与线下城市放映？<span class="plus">+</span></summary>
+          <div class="body">官网内页与社区公告会提前两周公布场次与报名方式，通常采用小规模预约制。部分场次会邀请导演到场交流，具体信息以当次公告为准。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / 官网入口 -->
+  <section id="join">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>从这里，进入属于你的星空果冻</h2>
+        <p>留下常用邮箱，我们会第一时间推送新片上线、社区征集与线下放映的通知。也可以直接点击按钮，前往官网入口开始浏览。</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="#top">立即前往官网入口</a>
+          <a class="btn btn-ghost" href="#works">先看看作品</a>
+        </div>
+        <form class="cta-form" id="joinForm">
+          <input type="email" id="joinEmail" placeholder="输入你的邮箱，接收放映通知" aria-label="邮箱地址" required>
+          <button class="btn btn-primary" type="submit">订阅通知</button>
+        </form>
+        <div class="form-hint" id="formHint">我们只发送与作品和放映相关的信息，可随时退订。</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <span class="mark" aria-hidden="true"></span>
+          <span>天美星空果冻<small>STAR JELLY STUDIO</small></span>
+        </a>
+        <p>一间把星空与果冻质感放进视频里的影像工作室。官网入口持续开放，欢迎随时进入这片流动的夜色。</p>
+        <div class="badges"><span>原创影像</span><span>创作者社区</span><span>城市放映</span></div>
+      </div>
+      <div class="foot-col">
+        <h5>内容</h5>
+        <ul>
+          <li><a href="#works">作品剧场</a></li>
+          <li><a href="#community">创作社区</a></li>
+          <li><a href="#journey">品牌历程</a></li>
+          <li><a href="#studio">放映技术</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>支持</h5>
+        <ul>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#join">订阅通知</a></li>
+          <li><a href="#works">投稿指引</a></li>
+          <li><a href="#top">官网入口</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>关于</h5>
+        <ul>
+          <li><a href="#philosophy">品牌理念</a></li>
+          <li><a href="#studio">技术说明</a></li>
+          <li><a href="#journey">团队与协作</a></li>
+          <li><a href="#faq">联系与反馈</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2025</span> 天美星空果冻 · 保留所有权利</span>
+      <div class="links">
+        <a href="#faq">使用条款</a>
+        <a href="#faq">隐私说明</a>
+        <a href="#top">返回顶部 ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 年份 */
+  var yEl = document.getElementById("year");
+  if (yEl) yEl.textContent = new Date().getFullYear();
+
+  /* 移动端导航 */
+  var navToggle = document.getElementById("navToggle");
+  var navLinks = document.getElementById("navLinks");
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", function(){
+      navLinks.classList.toggle("open");
+      navToggle.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){
+        navLinks.classList.remove("open");
+        navToggle.textContent = "☰";
+      });
+    });
+  }
+
+  /* 数字滚动 */
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute("data-count")) || 0;
+    var suffix = el.getAttribute("data-suffix") || "";
+    var decimals = (String(target).split(".")[1] || "").length;
+    var start = null, dur = 1500;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = target * eased;
+      el.textContent = (decimals ? val.toFixed(decimals) : Math.round(val).toLocaleString("zh-CN")) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = (decimals ? target.toFixed(decimals) : target.toLocaleString("zh-CN")) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* 滚动揭示 */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  var counted = new WeakSet();
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add("on");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(function(el){ io.observe(el); });
+
+    var counters = document.querySelectorAll("[data-count]");
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting && !counted.has(entry.target)) {
+          counted.add(entry.target);
+          animateCount(entry.target);
+          cio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function(el){ cio.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("on"); });
+    document.querySelectorAll("[data-count]").forEach(animateCount);
+  }
+
+  /* 播放器交互演示 */
+  var progressFill = document.getElementById("progressFill");
+  var timeNow = document.getElementById("timeNow");
+  var toggleBtn = document.getElementById("toggleBtn");
+  var prevBtn = document.getElementById("prevBtn");
+  var playBtn = document.getElementById("playBtn");
+  var progressBar = document.getElementById("progressBar");
+
+  var TOTAL = 432; /* 7:12 秒 */
+  var pos = Math.round(TOTAL * 0.42);
+  var playing = false;
+  var timer = null;
+
+  function fmt(sec){
+    var m = Math.floor(sec / 60);
+    var s = Math.floor(sec % 60);
+    return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+  }
+  function render(){
+    var pct = Math.max(0, Math.min(100, (pos / TOTAL) * 100));
+    if (progressFill) progressFill.style.width = pct + "%";
+    if (timeNow) timeNow.textContent = fmt(pos);
+  }
+  function setPlaying(next){
+    playing = next;
+    if (toggleBtn) {
+      toggleBtn.innerHTML = playing
+        ? '<svg viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>'
+        : '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    }
+    if (playing) {
+      clearInterval(timer);
+      timer = setInterval(function(){
+        pos += 1;
+        if (pos >= TOTAL) { pos = 0; setPlaying(false); }
+        render();
+      }, 1000);
+    } else {
+      clearInterval(timer);
+    }
+  }
+
+  if (toggleBtn) toggleBtn.addEventListener("click", function(){ setPlaying(!playing); });
+  if (playBtn) {
+    playBtn.addEventListener("click", function(){ setPlaying(!playing); });
+    playBtn.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setPlaying(!playing); }
+    });
+  }
+  if (prevBtn) prevBtn.addEventListener("click", function(){ pos = 0; render(); });
+  if (progressBar) {
+    progressBar.addEventListener("click", function(e){
+      var rect = progressBar.getBoundingClientRect();
+      var ratio = (e.clientX - rect.left) / rect.width;
+      pos = Math.round(TOTAL * Math.max(0, Math.min(1, ratio)));
+      render();
+    });
+  }
+  render();
+
+  /* 作品卡片点击 */
+  document.querySelectorAll(".work").forEach(function(card){
+    function openWork(){
+      var title = card.querySelector("h3");
+      var name = title ? title.textContent : "该作品";
+      if (progressBar) {
+        pos = 0;
+        render();
+        setPlaying(false);
+      }
+      var studio = document.getElementById("studio");
+      if (studio) studio.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (timeNow) {
+        setTimeout(function(){
+          var hint = document.getElementById("formHint");
+          if (hint) hint.textContent = "已定位到放映区，" + name + " 的详情可在官网内页查看。";
+        }, 600);
+      }
+    }
+    card.addEventListener("click", openWork);
+    card.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openWork(); }
+    });
+  });
+
+  /* 订阅表单 */
+  var form = document.getElementById("joinForm");
+  var hint = document.getElementById("formHint");
+  if (form) {
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var input = document.getElementById("joinEmail");
+      var val = input ? input.value.trim() : "";
+      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (!hint) return;
+      if (!ok) {
+        hint.textContent = "邮箱格式似乎不太对，请再检查一次。";
+        hint.style.color = "#ff9ec4";
+        return;
+      }
+      hint.textContent = "订阅成功！放映通知将发送至 " + val + "，可随时退订。";
+      hint.style.color = "#7ef0d0";
+      form.reset();
+      setTimeout(function(){
+        hint.textContent = "我们只发送与作品和放映相关的信息，可随时退订。";
+        hint.style.color = "";
+      }, 5200);
+    });
+  }
+
+  /* 平滑定位偏移修正 */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener("click", function(e){
+      var id = a.getAttribute("href");
+      if (!id || id === "#") return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.pageYOffset - 76;
+      window.scrollTo({ top: top, behavior: "smooth" });
+    });
+  });
+})();
+</script>
+</body>
+  </html>
